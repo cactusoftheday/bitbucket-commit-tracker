@@ -10,8 +10,9 @@ if(len(APP_PASSWORD) <= 3):
     with(open('file.txt','r')) as file:
         content = file.read() # read app password if app password is empty
 
-APP_PASSWORD = content
-print(APP_PASSWORD)
+content = content.split('\n')
+
+APP_PASSWORD = content[0]
 
 # Set the Bitbucket API base URL
 BASE_URL = 'https://api.bitbucket.org/2.0'
@@ -28,8 +29,9 @@ def get_repo_name(url):
     path_parts = parsed_url.path.strip('/').split('/')
     return path_parts[1]
 
-# Get the repository URL from the user
-repository_url = "https://bitbucket.org/deeptrekker/dt_bweb_crawler_control_app"
+repository_url = content[1] # yet to figure out how to get all repos
+# example repo url: https://bitbucket.org/deeptrekker/repo_name
+#print(repository_url)
 
 def get_total_commits_by_person(repository_url, USERNAME):
     repository_owner = get_repo_owner(repository_url)
