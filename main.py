@@ -92,21 +92,6 @@ def get_branches(branches_url):
     print(len(allBranches))
     return allBranches
 
-
-'''def get_commit_diffstat(workspace, repo_slug, commit_sha, auth):
-    url = f"https://api.bitbucket.org/2.0/repositories/{workspace}/{repo_slug}/diffstat/{commit_sha}"
-
-    response = requests.get(url, auth=auth)
-
-    if response.status_code == 200:
-        diffstat_data = response.json()
-        print(diffstat_data)
-        diffstat_values = diffstat_data["values"]
-        lines_added = diffstat_values[0]["lines_added"]
-        lines_removed = diffstat_values[0]["lines_removed"]
-    else:
-        print("Error:", response.status_code)
-    #return lines_added,lines_removed'''
 '''def get_total_commits_by_person(repository_url, USERNAME, userName):
     repository_owner = get_repo_owner(repository_url)
     repository_name = get_repo_name(repository_url)
@@ -184,7 +169,7 @@ def process_branch(repository_owner, repository_name, branch_name, auth, userNam
                 print(commit)
                 print("This commit caused something to break! skipping over it.")
                 continue
-        return len(set(commits_by_person))
+        return len(list(set(commits_by_person)))
     else:
         print("whoops error!", response.status_code)
         return 0
@@ -216,7 +201,7 @@ def get_total_commits_by_person(repository_url, USERNAME, userName):
 person_username = input('Enter the person\'s username: ')
 person_username = 'cactusoftheday'
 userName = input('Enter the person\'s proper name: ')
-userName = 'Matt Robichaud'
+userName = 'Eric Amshukov'
 
 # Get the total number of commits by the person in the repository
 total_commits = get_total_commits_by_person(repository_url, person_username, userName)
